@@ -838,9 +838,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (window.opener && window.opener !== window) {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('site_changed')) {
-      // alert('site_changed 2');
       window.opener.openOauthPsScan();
     } else {
+      window.opener.location.href = window.opener.location.href;
       window.close();   // close popup
     }
   }

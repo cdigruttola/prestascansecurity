@@ -357,6 +357,7 @@
     padding: 10px;
     text-align: center;
     min-width: 245px;
+    position: relative;
 }
 #prestascansecurity_main_container span.vulnerabilities_count {
     position: absolute;
@@ -1135,6 +1136,9 @@ table#coreVulnerabilities.dataTable .cve {
 }
 #prestascansecurity_main_container a.btn.btn-default.disabled span.lds-ring {
     display: block;
+    position: absolute;
+    left: 0;
+    top: 9px;
 }
 #prestascansecurity_main_container a.btn.btn-default .lds-ring span {
     box-sizing: border-box;
@@ -1428,4 +1432,10 @@ table#coreVulnerabilities.dataTable td.dt-control{
     top: -50px;
     right: -55px;
     min-width:220px;
+}
+#content.bootstrap #prestascansecurity_main_container .menu_container a {
+    text-decoration: none;
+}
+#content.bootstrap #prestascansecurity_main_container .menu-sous-element.active a {
+    background: none;
 }
