@@ -84,7 +84,7 @@ $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroll
 $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_a8519b28310921301c5922d2353f0ba9'] = 'Erreur lors de la mise à jour du module';
 $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_5752a3ec65d05f8cf4e2d8d01d6c5fdd'] = 'Vous n\'êtes peut-être pas connecté. Veuillez actualiser la page et vérifier votre connexion.';
 $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_54ea157f61befc4bcd7d148b28242fab'] = 'Un scan est déjà en cours. Vous serez informé une fois terminé.';
-$_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_7d0db380a5b95a8ba1da0bca241abda1'] = ' à ';
+$_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_7d0db380a5b95a8ba1da0bca241abda1'] = 'à';
 $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_cca1852b74082494274bf0fc69243499'] = 'Vous avez dépassé la limite de scans autorisés pour cette semaine.';
 $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_6a9112b659ebd188dd949e58acbe9b19'] = 'Un prochain scan sera possible le ';
 $_MODULE['<{prestascansecurity}prestashop>adminprestascansecurityreportscontroller_3bd6678cfe8c70ca251cb411803b8c86'] = 'Vous avez atteint le nombre maximale de tentatives de scan autorisées cette semaine.';

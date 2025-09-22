@@ -46,6 +46,7 @@ class AdminPrestascanSecurityReportsController extends ModuleAdminController
 
     public function init()
     {
+        parent::init();
         $OAuth = new \PrestaScan\OAuth2\Oauth();
         $error = false;
         try {
@@ -459,9 +460,8 @@ class AdminPrestascanSecurityReportsController extends ModuleAdminController
             $arrayMessage = explode("#", $errorMessage);
             $resetTime = ' ';
             if (isset($arrayMessage[1]) && !empty($arrayMessage[1])) {
-                $resetTime .= date('j/m/Y', strtotime($arrayMessage[1]));
-                $resetTime .= $this->module->l('at','AdminPrestascanSecurityReportsController');
-                $resetTime .= date('h\hm', strtotime($arrayMessage[1]));
+                $time = strtotime($arrayMessage[1]);
+                $resetTime = ' ' . Tools::displayDate(date('Y-m-d H:i:s', $time)) . ' ' . $this->module->l('at', 'AdminPrestascanSecurityReportsController') . ' ' . date('H:i', $time) ;
             }
             if ($arrayMessage[0] == 'Too Many Attempts.') {
                 $errorMessage = $this->module->l('You have exceeded the limit of allowed scans for this week.','AdminPrestascanSecurityReportsController');
@@ -478,7 +478,7 @@ class AdminPrestascanSecurityReportsController extends ModuleAdminController
             }
             self::dieWithError($errorMessage);
         } catch (\Exception $exeption) {
-            self::dieWithError($this->module->l('Error while generating this report. Please try again.', 'AdminPrestascanSecurityReportsController'));
+            self::dieWithError($this->module->l('Error while generating this report. Please try again.' . $exeption->getMessage(), 'AdminPrestascanSecurityReportsController'));
         }
 
         if (\PrestaScanQueue::isJobAlreadyCompleted($report->reportName)) {
@@ -530,6 +530,17 @@ class AdminPrestascanSecurityReportsController extends ModuleAdminController
         try {
             $job = \PrestaScanQueue::getJobByActionNameAndState(Tools::getValue('type'), \PrestaScanQueue::$actionname['SUGGEST_CANCEL']);
             if (!isset($job['jobid'])) {
+                $type = Tools::getValue('type');
+                $progressScans = Configuration::get('PRESTASCAN_SCAN_PROGRESS');
+                if (!empty($progressScans)) {
+                    $progressScans = json_decode($progressScans, true);
+                    if (isset($progressScans[$type]) && $progressScans[$type]) {
+                        $this->setScanStatus($type, false);
+                        \PrestaScan\Tools::printAjaxResponse(true, false, $this->module->l('Scan cancelled'));
+                        exit;
+                    }
+                }
+                
                 self::dieWithError($this->module->l('Error while cancelling the scan. The scan does not exist.', 'AdminPrestascanSecurityReportsController'));
             }
 
